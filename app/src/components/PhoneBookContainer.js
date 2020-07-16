@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { connect } from "react-redux"
 import { useModal } from "react-modal-hook"
 import Grid from '@material-ui/core/Grid'
@@ -33,7 +33,7 @@ const PhoneBookContainer = ({ id, phonebook, removePhonebook }) => {
         onExited={onExited}
         title="Delete Contact?"
         confirmLabel="Delete"
-        onConfirm={async () => {
+        onConfirm={async() => {
           let r
           try {
             r = await deletePhoneBookAPI(id)

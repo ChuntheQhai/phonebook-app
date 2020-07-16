@@ -26,7 +26,7 @@
   "devDependencies": {},
   "scripts": {
     "start": "REACT_APP_API_URL=http://localhost:3000/api react-scripts start",
-    "build": "REACT_APP_API_URL=https://myphonebook-react.herokuapp.com/ react-scripts build",
+    "build": "REACT_APP_API_URL=https://myphonebook-react.herokuapp.com react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },

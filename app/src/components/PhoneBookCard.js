@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Button from "@material-ui/core/Button";
 
 import {
   FiCard,
@@ -34,6 +35,10 @@ const useStyles = makeStyles({
   cardAction: {
     padding: 0
   },
+  callBtn: {
+    zIndex: 1,
+    width: "100%"
+  },
   imageButtonWrapper: {
     height: "100%",
     width: "100%",
@@ -60,6 +65,9 @@ const useStyles = makeStyles({
 const PhoneBookCard = ({ phonebook, showConfirmModal }) => {
   const classes = useStyles();
 
+  const callNow = () => {
+    window.open(`tel:${phonebook.phone}`, '_self')
+  }
   return (
     <FiCard>
       <div className={classes.imageButtonWrapper}>
@@ -68,7 +76,7 @@ const PhoneBookCard = ({ phonebook, showConfirmModal }) => {
           className={classes.removeBtn}
           onClick={showConfirmModal}  />
       </div>
-      <FiCardActionArea>
+      <FiCardActionArea onClick={() => alert('hello')} >
         <FiCardMedia
           media="picture"
           image={`/images/contact.jpg`}
@@ -77,12 +85,16 @@ const PhoneBookCard = ({ phonebook, showConfirmModal }) => {
           <Typography variant="h1" component="h1" style={{ marginTop: 15 }}>
             {`${phonebook.name}`}
           </Typography>
+          
           <Typography variant="h2" component="h2" style={{ marginTop: 15 }}>
             {`+${phonebook.phone}`}
           </Typography>
         </FiCardContent>
       </FiCardActionArea>
       <FiCardActions className={classes.cardAction}>
+        <Button className={classes.callBtn} href={`tel:+${phonebook.phone}`}>
+          Call Now
+        </Button>
       </FiCardActions>
     </FiCard>
   )

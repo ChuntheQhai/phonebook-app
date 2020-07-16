@@ -3,6 +3,11 @@ React PhoneBook API + React Web Build
 
 Simple React PhoneBook Application
 
+Heroku Preview URL
+---------------
+
+https://myphonebook-react.herokuapp.com/
+
 Requirement
 ---------------
 ```
@@ -27,7 +32,7 @@ npm run client
 npm start
 
 # Install & Build React Production
-npm run build
+npm run build-prod
 ```
 
 Environment Variables

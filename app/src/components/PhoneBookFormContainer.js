@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/material.css'
 
+import Grid from '@material-ui/core/Grid';
 import { snackbarService } from 'uno-material-ui';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button";
@@ -23,10 +24,16 @@ const useStyles = makeStyles((theme) => ({
       color: '#fff',
     },
     fieldName: {
-        width: "300px"
+        width: "100%"
+    },
+    phoneContainer: {
+        marginTop: 25
     },
     phoneInput: {
-        marginTop: 25
+        width: "100%!important"
+    },
+    phoneDropdown: {
+        position: "fixed!important"
     }
 }));
 
@@ -45,22 +52,33 @@ const PhoneBookFormContainer = ({
   ...rest
 }) => {
     const classes = useStyles();
-    const [nameValidate, setNameValidate] = useState(false)
+    const [nameError, setNameError] = useState(false)
+    const [phoneError, setPhoneError] = useState(true)
     const [creating, setCreating] = useState(false);
-    const [intervalValue, setInterval] = useState(30)
     const [phone, setPhone] = useState('')
 
     const handleSubmit = useCallback(async e => {
         e.preventDefault();
+        
+        let name = (e.target && e.target.name) ? e.target.name.value : null
+        if (!name) {
+            setNameError(true)
+            return;
+        }
+
+        if(phoneError) return;
         let data = {
             name: e.target.name.value,
             phone
         }
+
         let r
         try {
+            setCreating(true)
             r = await createPhoneBookAPI(data)
             data["id"] = r["id"]
             if (r.status === 200) createPhonebook(data);
+            setCreating(false)
         } catch(err) {
             snackbarService.showSnackbar(`Ops! ${err.message}!`, 'error');
         }
@@ -82,23 +100,46 @@ const PhoneBookFormContainer = ({
                     {id ? "Edit Contact" : "Create Contact"}
                 </DialogTitle>
                 <DialogContent>
-                    <TextField
-                        className={classes.fieldName}
-                        error={ nameValidate === true }
-                        helperText={ nameValidate ? "Your name is empty or duplicate." : ''}
-                        name="name"
-                        label="Name"
-                        placeholder="Enter Your Name"
-                        defaultValue={phonebook ? phonebook.name : ""}
-                    />
-                    
-                    <PhoneInput
-                        containerClass={classes.phoneInput}
-                        country={'my'}
-                        value={phone}
-                        onChange={phone => setPhone(phone)}
-                    />
-                   
+                <Grid container>
+                    <Grid item xs={12}>
+                        <TextField
+                            className={classes.fieldName}
+                            error={ nameError === true }
+                            helperText={ nameError ? "Your name is empty." : ''}
+                            name="name"
+                            label="Name"
+                            placeholder="Enter Your Name"
+                            defaultValue={phonebook ? phonebook.name : ""}
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <PhoneInput
+                            containerClass={classes.phoneContainer}
+                            inputClass={classes.phoneInput}
+                            dropdownClass={classes.phoneDropdown}
+                            country={'my'}
+                            value={phone}
+                            onChange={phone => setPhone(phone)}
+                            isValid={(value, country) => {
+                                if (phone !== '') {
+                                    console.log(country.format)
+                                    let numberPhone = (country && country.format) ? country.format.match(/\./g).length : null
+                                    if(numberPhone){
+                                        let inputPhoneLength = (value.match(/\d/g) || []).length
+                                        console.log('numberPhone: ', numberPhone)
+                                        console.log('inputPhoneLength: ', inputPhoneLength)
+                                        if(numberPhone !== inputPhoneLength) return 'Invalid value: '+ value
+                                        else {
+                                            setPhoneError(false)
+                                            return true
+                                        }
+                                    } else return 'Invalid value: '+ value
+                                }
+                                return true
+                            }}
+                        />
+                    </Grid>
+                </Grid>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={onClose}>Cancel</Button>

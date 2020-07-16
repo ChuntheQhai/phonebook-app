@@ -1,0 +1,39 @@
+{
+  "name": "phone-book-application-react",
+  "version": "1.0.0",
+  "description": "Simple phone book application using react",
+  "keywords": [
+    "phonebook",
+    "react"
+  ],
+  "main": "src/index.js",
+  "author": "ChuntheQhai (Abel)",
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "moment": "^2.27.0",
+    "react": "next",
+    "react-dom": "next",
+    "react-modal-hook": "latest",
+    "react-phone-input-2": "^2.13.7",
+    "react-redux": "^7.2.0",
+    "react-scripts": "2.0.3",
+    "react-transition-group": "2.5.0",
+    "redux": "4.0.1",
+    "shortid": "2.2.14",
+    "uno-material-ui": "^2.0.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "REACT_APP_API_URL=http://localhost:3000/api react-scripts start",
+    "build": "REACT_APP_API_URL=http://localhost:3000/api react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

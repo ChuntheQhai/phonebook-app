@@ -6,7 +6,7 @@
   "scripts": {
     "client": "cd app && npm start",
     "build": "cd app && npm install && npm run build",
-    "server": "nodemon server/esm --watch src",
+    "server": "node server/esm --watch src",
     "start": "concurrently \"npm run server\" \"npm run client\""
   },
   "heroku-run-build-script": true,

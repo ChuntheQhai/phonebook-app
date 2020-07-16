@@ -118,22 +118,20 @@ const PhoneBookFormContainer = ({
                             inputClass={classes.phoneInput}
                             dropdownClass={classes.phoneDropdown}
                             country={'my'}
+                            onlyCountries={['my']}
+                            disableDropdown={true}
+                            countryCodeEditable={false}
                             value={phone}
                             onChange={phone => setPhone(phone)}
                             isValid={(value, country) => {
                                 if (phone !== '') {
-                                    console.log(country.format)
-                                    let numberPhone = (country && country.format) ? country.format.match(/\./g).length : null
-                                    if(numberPhone){
-                                        let inputPhoneLength = (value.match(/\d/g) || []).length
-                                        console.log('numberPhone: ', numberPhone)
-                                        console.log('inputPhoneLength: ', inputPhoneLength)
-                                        if(numberPhone !== inputPhoneLength) return 'Invalid value: '+ value
-                                        else {
-                                            setPhoneError(false)
-                                            return true
-                                        }
-                                    } else return 'Invalid value: '+ value
+                                    var str = value.trim().match(/\d/g);
+                                    console.log(str.length)
+                                    if (str && str.length >= 10) {
+                                        setPhoneError(false)
+                                        return true
+                                    }
+                                    else return 'Invalid value: '+ value
                                 }
                                 return true
                             }}

@@ -5,7 +5,7 @@
   "author": "ChuntheQhai (Abel)",
   "scripts": {
     "client": "cd app && npm start",
-    "build": "cd app && npm install && npm run build",
+    "build": "cd app && npm install && npm run build-prod",
     "server": "node server/esm",
     "start": "concurrently \"npm run server\" \"npm run client\""
   },

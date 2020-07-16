@@ -131,7 +131,10 @@ const PhoneBookFormContainer = ({
                                         setPhoneError(false)
                                         return true
                                     }
-                                    else return 'Invalid value: '+ value
+                                    else {
+                                        setPhoneError(true)
+                                        return 'Invalid value: '+ value
+                                    }
                                 }
                                 return true
                             }}

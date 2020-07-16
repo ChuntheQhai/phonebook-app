@@ -6,7 +6,7 @@
   "scripts": {
     "client": "cd app && npm start",
     "build": "cd app && npm install && npm run build",
-    "server": "node server/esm --watch src",
+    "server": "node server/esm",
     "start": "concurrently \"npm run server\" \"npm run client\""
   },
   "heroku-run-build-script": true,
@@ -18,11 +18,11 @@
     "mongodb": "^3.5.9",
     "morgan": "^1.9.0",
     "node-fetch": "^2.0.0",
-    "react-phone-input-2": "^2.13.7"
+    "react-phone-input-2": "^2.13.7",
+    "dotenv": "^5.0.0",
   },
   "devDependencies": {
     "concurrently": "^3.5.0",
-    "dotenv": "^5.0.0",
     "nodemon": "^2.0.4"
   }
 }

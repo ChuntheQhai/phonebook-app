@@ -28,7 +28,6 @@ const PhoneBookListContainer = ({ ids, createPhonebook }) => {
   const classes = useStyles();
   useEffect(async() => {
     let resultList = await getPhoneBookAPI()
-    console.log('resultList: ', resultList)
     if (resultList && resultList.data && resultList.data.length > 0) {
       resultList.data.map(d => { createPhonebook(d) })
     }

@@ -30,7 +30,6 @@ export default () => {
     })
     
     api.post('/phonebook', async (req, res, next) => {
-        console.log('req.body: ', req.body)
         const newID = ObjectID()
         try {
             await phonebooks.insertOne({
@@ -48,7 +47,6 @@ export default () => {
     })
     
     api.delete('/phonebook/:phoneBookId', async (req, res, next) => {
-        console.log('req.params: ', req.params)
         try {
             await phonebooks.removeOne({ _id: ObjectID(req.params.phoneBookId) })
             res.json({ status: 200 })

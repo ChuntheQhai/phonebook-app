@@ -8,11 +8,7 @@ import { SnackbarContainer } from 'uno-material-ui';
 import { store } from "./redux";
 import App from './App';
 
-
 let theme = createMuiTheme();
-
-console.log('react process env: ', process.env)
-
 ReactDOM.render(
   <Provider store={store}>
     <ModalProvider rootComponent={TransitionGroup}>

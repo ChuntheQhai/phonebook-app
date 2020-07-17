@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { createMuiTheme, responsiveFontSizes, ThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Provider } from "react-redux";
 import { ModalProvider } from "react-modal-hook";
 import { TransitionGroup } from "react-transition-group";
@@ -10,7 +10,6 @@ import App from './App';
 
 
 let theme = createMuiTheme();
-theme = responsiveFontSizes(theme);
 
 console.log('react process env: ', process.env)
 

@@ -12,7 +12,7 @@ import {
   FiCardMedia
 } from "../styles/FullImageCard";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   title: {
     fontSize: 14,
     color: "white"
@@ -59,8 +59,24 @@ const useStyles = makeStyles({
     padding: "5px",
     color: "white",
     cursor: "pointer"
+  },
+  name: {
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "42px"
+    },
+    [theme.breakpoints.between("sm", "md")]: {
+      fontSize: "42px"
+    },
+  },
+  phone: {
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "33px"
+    },
+    [theme.breakpoints.between("sm", "md")]: {
+      fontSize: "33px"
+    },
   }
-});
+}));
 
 const PhoneBookCard = ({ phonebook, showConfirmModal }) => {
   const classes = useStyles();
@@ -82,11 +98,11 @@ const PhoneBookCard = ({ phonebook, showConfirmModal }) => {
           image={`/images/contact.jpg`}
         />
         <FiCardContent className={classes.fiCardContent}>
-          <Typography variant="h1" component="h1" style={{ marginTop: 15 }}>
+          <Typography variant="h1" className={classes.name} style={{ marginTop: 15 }}>
             {`${phonebook.name}`}
           </Typography>
           
-          <Typography variant="h2" component="h2" style={{ marginTop: 15 }}>
+          <Typography variant="h2" className={classes.phone} style={{ marginTop: 15 }}>
             {`+${phonebook.phone}`}
           </Typography>
         </FiCardContent>

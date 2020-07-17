@@ -26,7 +26,7 @@ export const FiCardActions = withStyles({
 export const FiCardContent = withStyles({
   root: {
     position: "relative",
-    backgroundColor: "transparent"
+    backgroundColor: "transparent", 
   }
 })(CardContent);
 
